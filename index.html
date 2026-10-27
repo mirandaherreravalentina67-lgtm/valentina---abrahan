@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentina & Abrahan 💙</title>
+<style>
+:root {
+  --cielo: #b9e5ff;
+  --azul: #4386b5;
+  --noche: #10273d;
+  --plata: #e8edf5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f5f9ff;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #345b7b, #101d31 70%);
+  overflow-x: hidden;
+}
+.silver {
+  color: #f5f7ff;
+  text-shadow: 0 0 5px #fff, 0 0 12px #c8e7ff,
+               0 0 24px #a8d9ff, 0 0 38px #e6edff;
+}
+header { padding: 55px 20px 35px; }
+.eyebrow {
+  letter-spacing: 4px;
+  color: var(--cielo);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+h1 { font-size: clamp(38px, 9vw, 65px); margin: 18px 0; }
+h2 { color: var(--cielo); font-weight: normal; }
+p { line-height: 1.8; }
+.hero-text { max-width: 520px; margin: auto; color: #dceafa; }
+section {
+  width: min(90%, 650px);
+  margin: 25px auto;
+  padding: 28px 22px;
+  border: 1px solid rgba(225,240,255,.45);
+  border-radius: 22px;
+  background: linear-gradient(145deg, rgba(200,225,255,.12),
+                                      rgba(255,255,255,.035));
+  box-shadow: 0 0 24px rgba(173,220,255,.08);
+}
+button {
+  background: linear-gradient(120deg, #d8e8f8, #8fc8f0, #f8fbff);
+  color: #152d43;
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 13px 22px;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 10px 4px;
+  box-shadow: 0 0 15px rgba(205,232,255,.4);
+}
+.counter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.time {
+  min-width: 90px;
+  padding: 15px 10px;
+  border: 1px solid #c8e5ff;
+  border-radius: 14px;
+  background: rgba(180,220,255,.1);
+}
+.time strong { display: block; font-size: 27px; }
+.time span { font-size: 12px; color: var(--cielo); }
+.envelope {
+  font-size: 78px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 12px #b9e5ff);
+}
+#letter, #surprise { display: none; }
+#letter p { white-space: pre-line; }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.photo {
+  min-height: 150px;
+  border: 1px dashed #c8e5ff;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #d7eaff;
+  background: rgba(180,220,255,.06);
+  overflow: hidden;
+}
+.photo img { width: 100%; height: 100%; object-fit: cover; }
+iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; }
+#qr img { width: 180px; max-width: 100%; background: white; padding: 8px; }
+footer { padding: 30px 15px 45px; color: #c8d9ec; }
+.star {
+  position: fixed;
+  top: -20px;
+  color: #edf8ff;
+  text-shadow: 0 0 10px white, 0 0 18px #8fc8f0;
+  pointer-events: none;
+  animation: fall linear forwards;
+  z-index: 5;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Una historia de amor</div>
+  <h1 class="silver">Valentina <br>& Abrahan</h1>
+  <p class="hero-text">
+    Un pequeño universo hecho para nosotros. 💙
+    <br>Lo más bonito de mi historia es compartirla contigo.
+  </p>
+  <button onclick="document.getElementById('carta').scrollIntoView({behavior:'smooth'})">
+    Descubre nuestra historia ✨
+  </button>
+</header>
+
+<section id="contador">
+  <div class="eyebrow">Desde el 2 de febrero de 2025</div>
+  <h2 class="silver">Nuestro tiempo juntos</h2>
+  <p>Cada segundo a tu lado cuenta una historia.</p>
+  <div class="counter">
+    <div class="time"><strong id="days">0</strong><span>DÍAS</span></div>
+    <div class="time"><strong id="hours">0</strong><span>HORAS</span></div>
+    <div class="time"><strong id="minutes">0</strong><span>MINUTOS</span></div>
+    <div class="time"><strong id="seconds">0</strong><span>SEGUNDOS</span></div>
+  </div>
+</section>
+
+<section id="carta">
+  <div class="eyebrow">Un mensaje para ti</div>
+  <h2 class="silver">Un sobre para Abrahan 💌</h2>
+  <p>Toca el sobre para descubrir tu carta.</p>
+  <div class="envelope" role="button" tabindex="0"
+       aria-label="Abrir la carta"
+       onclick="openLetter()"
+       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openLetter()}">
+    💌
+  </div>
+  <div id="letter">
+    <h2>Para mi persona especial 💙</h2>
+    <p id="letterText">Aquí escribiremos tu carta de amor.
+Vamos a crearla juntas, parte por parte, con tus propias palabras.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Nuestros recuerdos</div>
+  <h2 class="silver">Momentos que son nuestros 📸</h2>
+  <p>Aquí pondremos sus fotos favoritas.</p>
+  <div class="gallery">
+    <div class="photo">📷 Foto 1<br>La agregaremos después</div>
+    <div class="photo">📷 Foto 2<br>La agregaremos después</div>
+    <div class="photo">📷 Foto 3<br>La agregaremos después</div>
+    <div class="photo">📷 Foto 4<br>La agregaremos después</div>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">Nuestra canción</div>
+  <h2 class="silver">Dale play a nuestro recuerdo 🎶</h2>
+  <p>Esta canción es parte de nuestra historia.</p>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/HHjCYxp07aY"
+    title="Nuestra canción"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+  </iframe>
+</section>
+
+<section>
+  <div class="eyebrow">Solo para ti</div>
+  <h2 class="silver">Una pequeña sorpresa ✨</h2>
+  <p>Hay algo que quiero recordarte...</p>
+  <button onclick="showSurprise()">Toca aquí, mi amor 💙</button>
+  <div id="surprise">
+    <h2 class="silver">Eres parte de mi lugar favorito.</h2>
+    <p>Y esta sorpresa es solo el comienzo. Personalizaremos este mensaje contigo.</p>
+    <div style="font-size:35px">💙 ✨ 💙</div>
+  </div>
+</section>
+
+<section id="qr">
+  <div class="eyebrow">Un recuerdo para compartir</div>
+  <h2 class="silver">Nuestra página en un QR</h2>
+  <p>Cuando publiquemos la página, generaremos un código QR para abrirla fácilmente desde otro celular.</p>
+  <p id="qrStatus">El QR se añadirá con el enlace definitivo de esta página.</p>
+</section>
+
+<footer>
+  <div class="silver">Valentina & Abrahan 💙</div>
+  <p>Una historia que seguimos escribiendo juntos.</p>
+</footer>
+
+<script>
+const startDate = new Date(2025, 1, 2, 0, 0, 0);
+
+function updateCounter() {
+  let diff = Math.max(0, Date.now() - startDate.getTime());
+  document.getElementById('days').textContent =
+    Math.floor(diff / 86400000);
+  document.getElementById('hours').textContent =
+    Math.floor(diff / 3600000) % 24;
+  document.getElementById('minutes').textContent =
+    Math.floor(diff / 60000) % 60;
+  document.getElementById('seconds').textContent =
+    Math.floor(diff / 1000) % 60;
+}
+updateCounter();
+setInterval(updateCounter, 1000);
+
+function openLetter() {
+  const letter = document.getElementById('letter');
+  letter.style.display = letter.style.display === 'block' ? 'none' : 'block';
+  if (letter.style.display === 'block') makeStars(12);
+}
+function showSurprise() {
+  document.getElementById('surprise').style.display = 'block';
+  makeStars(30);
+}
+function makeStars(amount) {
+  for (let i = 0; i < amount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.textContent = Math.random() > .5 ? '✦' : '♡';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDuration = (3 + Math.random() * 4) + 's';
+    star.style.fontSize = (12 + Math.random() * 20) + 'px';
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 7500);
+  }
+}
+</script>
+</body>
+</html>
